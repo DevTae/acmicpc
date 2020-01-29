@@ -31,5 +31,6 @@ main:
 ;	mov ecx, msg
 ;	mov edx, 12
 ;	int 0x80 ; syscall 와 같음 32비트 컴파일 시에는 int 0x80 사용해야 함.
+;	mov eax, 0
 ;	leave
 ;	ret
