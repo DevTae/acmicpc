@@ -4,3 +4,4 @@ cpp/a.out
 *.c
 *.cpp
 *.s
+a.out
