@@ -1,7 +1,17 @@
-cpp/a.out
+# except compiled file
+asm/*.out
+asm/*.exe
+asm/obj
 
-# unsolved code file
+cpp/*.out
+cpp/*.exe
+
+# except unsolved code file
 *.c
 *.cpp
 *.s
-a.out
+*.exe
+*.out
+
+# except vscode configuration file
+.vscode/*
