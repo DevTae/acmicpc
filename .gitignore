@@ -1,1 +1,6 @@
 cpp/a.out
+
+# unsolved code file
+*.c
+*.cpp
+*.s
