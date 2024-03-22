@@ -7,11 +7,11 @@ cpp/*.out
 cpp/*.exe
 
 # except unsolved code file
-*.c
-*.cpp
-*.s
-*.exe
-*.out
+#*.c
+#*.cpp
+#*.s
+#*.exe
+#*.out
 
 # except vscode configuration file
 .vscode/*
