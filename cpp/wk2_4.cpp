@@ -18,4 +18,6 @@ int main_wk2_4(void) {
 	else {
 		printf("0");
 	}
+
+	return 0;
 }

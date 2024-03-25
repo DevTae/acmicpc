@@ -142,6 +142,8 @@
     <ClCompile Include="10816.cpp" />
     <ClCompile Include="1260.cpp" />
     <ClCompile Include="18258.cpp" />
+    <ClCompile Include="2178.cpp" />
+    <ClCompile Include="2667.cpp" />
     <ClCompile Include="27433.cpp" />
     <ClCompile Include="28278.cpp" />
     <ClCompile Include="wk2_5.cpp" />
