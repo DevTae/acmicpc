@@ -18,6 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="13460.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,20 +141,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="10816.cpp" />
-    <ClCompile Include="1260.cpp" />
-    <ClCompile Include="18258.cpp" />
-    <ClCompile Include="2178.cpp" />
-    <ClCompile Include="2667.cpp" />
-    <ClCompile Include="27433.cpp" />
-    <ClCompile Include="28278.cpp" />
-    <ClCompile Include="wk2_5.cpp" />
-    <ClCompile Include="wk2_1.cpp" />
-    <ClCompile Include="wk2_2.cpp" />
-    <ClCompile Include="wk2_3.cpp" />
-    <ClCompile Include="wk2_4.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

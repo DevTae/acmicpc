@@ -65,7 +65,7 @@ int bfs() {
 	}
 }
 
-int main(void) {
+int main_2178(void) {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
