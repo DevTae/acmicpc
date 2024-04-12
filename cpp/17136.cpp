@@ -42,6 +42,7 @@ const int COLOR_ARRAY[COLOR_SIZE] = { 1,2,3,4,5 }; // 추후 이렇게 사용
 // board = visited 가 되어야 함.
 int board[SIZE][SIZE] = { 0, }; // 1 이면 채워야 함
 int visited[SIZE][SIZE] = { 0, }; // 1 이면 채워진 것 (visited 역할)
+int pivot = GAME_OVER; // 백트래킹 얘보다 더 성능 좋게 나와야 해 @@@
 
 // 하나씩 확인할 거면 이중 포문일 때 그냥 함수화 시켜서 내보낸다.
 bool possibleToPlot(INFO info, int i) {
@@ -67,17 +68,16 @@ bool possibleToPlot(INFO info, int i) {
 
 int dfs(INFO info) {
 	int result = GAME_OVER; // 기본값
-
-	/*
-	// 블럭 모두 다 사용했다면 굳이 더 확인할 필요 없음
-	bool pass = false;
+	
+	// 남은 블럭 제외 및 색종이 사용량
+	int count = COLOR_SIZE * 5; // 각각 5개씩 있음
 	for (int i = 0; i < COLOR_SIZE; i++) {
-		if (info.p[i] > 0) {
-			pass = true;
-		}
+		count -= info.p[i];
 	}
-	if (!pass) return result;
-	*/
+
+	// 백트래킹 개념 활용 - paper 가 result 보다 많다면 유망하지 않으므로 버림
+	if (count > pivot) return result;
+	
 
 	// 색종이 놓지 않아도 된다면, 이동함
 	//while (info.num < SIZE * SIZE && board[info.num / SIZE][info.num % SIZE] == visited[info.num / SIZE][info.num % SIZE]) {
@@ -87,17 +87,11 @@ int dfs(INFO info) {
 
 	// num 이 요구조건을 넘긴 경우 성공
 	if (info.num >= SIZE * SIZE) {
-
-		// 남은 블럭 제외
-		int count = COLOR_SIZE * 5; // 각각 5개씩 있음
-		for (int i = 0; i < COLOR_SIZE; i++) {
-			count -= info.p[i];
-		}
-
 		if (count < 0) {
 			return GAME_OVER;
 		}
 		else {
+			pivot = MIN(pivot, count); // 백트래킹 개념 응용 @@@@@@@@@@@@@@@
 			return count;
 		}
 	}
