@@ -56,7 +56,7 @@ bool possibleToPlot(INFO info, int i) {
 			int r = info.num / SIZE + j;
 			int c = info.num % SIZE + k;
 			if (board[r][c] == 0 // 색종이를 놓을 수 없거나
-			 || visited[r][c] == 1) { // 이미 방문했거나 
+			 /* || visited[r][c] == 1*/) { // 이미 방문했거나 
 				return false;
 			}
 		}
@@ -68,6 +68,7 @@ bool possibleToPlot(INFO info, int i) {
 int dfs(INFO info) {
 	int result = GAME_OVER; // 기본값
 
+	/*
 	// 블럭 모두 다 사용했다면 굳이 더 확인할 필요 없음
 	bool pass = false;
 	for (int i = 0; i < COLOR_SIZE; i++) {
@@ -76,9 +77,11 @@ int dfs(INFO info) {
 		}
 	}
 	if (!pass) return result;
+	*/
 
 	// 색종이 놓지 않아도 된다면, 이동함
-	while (info.num < SIZE * SIZE && board[info.num / SIZE][info.num % SIZE] == visited[info.num / SIZE][info.num % SIZE]) {
+	//while (info.num < SIZE * SIZE && board[info.num / SIZE][info.num % SIZE] == visited[info.num / SIZE][info.num % SIZE]) {
+	while (info.num < SIZE * SIZE && board[info.num / SIZE][info.num % SIZE] == 0) {
 		info.num++;
 	}
 
@@ -108,38 +111,33 @@ int dfs(INFO info) {
 			// 방문 처리
 			for (int j = 0; j <= i - 1; j++) { // row
 				for (int k = 0; k <= i - 1; k++) { // column
-					int r = info.num / SIZE + j;
-					int c = info.num % SIZE + k;
-					visited[r][c] = 1;
+					//visited[r][c] = 1;
+					board[info.num / SIZE + j][info.num % SIZE + k] = 0;
 				}
 			}
-			
-			INFO next;
-			next.num = info.num + 1;
-			next.p = new int[COLOR_SIZE];
-			for (int j = 1; j <= COLOR_SIZE; j++) {
-				int count = info.p[j - 1];
-				if (i == j)
-					count--;
-				next.p[j - 1] = count;
-			}
+
+			// 배열 변수 만들어서 동적 초기화하는 것도 시간이 걸림 (비추천 @)
+			int save = info.p[i - 1];
+			info.p[i - 1] -= 1;
 
 			// next 할당 및 dfs 진행
-			result = MIN(result, dfs(next));
+			result = MIN(result, dfs(info));
 
 			// 방문처리 취소
-			for (int j = 0; j < i; j++) { // row
-				for (int k = 0; k < i; k++) { // column
-					int r = info.num / SIZE + j;
-					int c = info.num % SIZE + k;
-					visited[r][c] = 0;
+			for (int j = 0; j <= i - 1; j++) { // row
+				for (int k = 0; k <= i - 1; k++) { // column
+					//visited[r][c] = 0;
+					board[info.num / SIZE + j][info.num % SIZE + k] = 1;
 				}
 			}
+
+			info.p[i - 1] = save;
 
 		}
 		else {
-			// 더 작은 것도 안되면 큰 것도 안 될 것.
-			return result;
+			// 더 작은 것도 안되면 큰 것도 안 될 것. --> 개수가 부족해서 안한 것도 감안해야 함.
+			//return result; // 개수가 부족해서 안한 것도 감안해야 함.
+			continue;
 		}
 	}
 
