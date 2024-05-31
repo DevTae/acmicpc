@@ -15,3 +15,9 @@ cpp/*.exe
 
 # except vscode configuration file
 .vscode/*
+/.idea/.gitignore
+/.idea/acmicpc.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml
